@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Gallery from "./examples/Gallery";
+import Processing from "./examples/Processing";
 
 class App extends Component {
   render() {
-    return <Gallery />;
+    return <Processing />;
   }
 }
 
