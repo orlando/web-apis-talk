@@ -1,20 +1,9 @@
 import React, { Component } from "react";
-import Pong from "./Pong";
-import styled from "styled-components";
-
-const Main = styled.main`
-  height: 100vh;
-  width: 100vw;
-  background: black;
-`;
+import Gallery from "./examples/Gallery";
 
 class App extends Component {
   render() {
-    return (
-      <Main>
-        <Pong />;
-      </Main>
-    );
+    return <Gallery />;
   }
 }
 

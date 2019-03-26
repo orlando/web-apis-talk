@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 10px auto;
+  text-align: center;
+  width: 50vw;
+}
+
+.image {
+  max-width: 100%;
+  padding: 20px;
+}
+
+.hidden {
+  visibility: hidden;
+}
