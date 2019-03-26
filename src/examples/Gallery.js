@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Gallery.css";
+import "./Gallery.scss";
 
 const images = [
   "https://images.unsplash.com/photo-1553257000-06f62adc2368?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=934&q=80",
@@ -19,7 +19,7 @@ const images = [
 class Gallery extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="gallery">
         {images.map((url, index) => {
           return <Image url={url} key={index} />;
         })}

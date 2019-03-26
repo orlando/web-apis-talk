@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import IntersectionObserver from "./pages/IntersectionObserver";
 import IntersectionObserver2 from "./pages/IntersectionObserver2";
 import RequestIdleCallback from "./pages/RequestIdleCallback";
+import PaymentRequest from "./pages/PaymentRequest";
 
 class App extends Component {
   render() {
@@ -27,6 +28,9 @@ class App extends Component {
               <li>
                 <Link to="/request-idle/">requestIdleCallback</Link>
               </li>
+              <li>
+                <Link to="/payment-request/">Payment Request API</Link>
+              </li>
             </ul>
           </nav>
 
@@ -39,6 +43,7 @@ class App extends Component {
             component={IntersectionObserver2}
           />
           <Route path="/request-idle/" component={RequestIdleCallback} />
+          <Route path="/payment-request/" component={PaymentRequest} />
         </div>
       </Router>
     );

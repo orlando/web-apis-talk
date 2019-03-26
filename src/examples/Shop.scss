@@ -1,0 +1,32 @@
+.shop {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  .button {
+    align-items: center;
+    background: lightcoral;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    .item {
+      padding: 20px;
+
+      .image {
+        width: 250px;
+      }
+    }
+  }
+}

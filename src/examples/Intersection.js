@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./Intersection.css";
+import "./Intersection.scss";
 
 const threshold = step =>
   Array.from({ length: 1 / step + 1 }, (_, i) => 0 + i * step);
@@ -40,7 +40,7 @@ class Intersection extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="intersection">
         <div className="box" ref={this.box}>
           {this.state.percentage}%
         </div>

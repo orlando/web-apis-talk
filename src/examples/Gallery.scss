@@ -1,0 +1,18 @@
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+
+  .image {
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+}
