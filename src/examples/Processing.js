@@ -1,40 +1,84 @@
 import React, { Component } from "react";
 
-class Miner extends Component {
+const taskCount = 10000;
+const tasks = (length => Array.from({ length: length }, (_, i) => 0 + i))(
+  taskCount
+);
+const idleTimes = [];
+
+class Processing extends Component {
   state = {
-    mining: true
+    progress: 0,
+    mean: 0,
+    running: false
   };
 
-  componentDidMount() {
-    // requestIdleCallback(this.idleCallback);
+  componentWillUnmount() {
+    window.cancelIdleCallback(this.callbackId);
   }
 
-  idleCallback = deadline => {
-    while (deadline.timeRemaining() > 0) {
-      this.mine();
-    }
+  queueTask() {
+    this.callbackId = requestIdleCallback(this.idleCallback, { timeout: 25 });
+  }
 
-    this.stop();
-
-    requestIdleCallback(this.idleCallback);
-  };
-
-  mine = () => {
-    console.log("mining");
-    this.setState({
-      mining: true
+  start = () => {
+    this.setState({ running: true }, () => {
+      this.queueTask();
     });
   };
 
   stop = () => {
+    window.cancelIdleCallback(this.callbackId);
+
+    const mean =
+      idleTimes.reduce((previous, current) => (current += previous)) /
+      idleTimes.length;
+
     this.setState({
-      mining: false
+      running: false,
+      mean
     });
   };
 
+  idleCallback = deadline => {
+    while (deadline.timeRemaining() > 20 && !deadline.didTimeout) {
+      const idleTimeLeft = deadline.timeRemaining();
+
+      console.log(`Idle time remaining: ${idleTimeLeft}`);
+      idleTimes.push(idleTimeLeft);
+      this.process();
+    }
+
+    this.report();
+
+    if (tasks.length > 0) {
+      this.queueTask();
+    }
+  };
+
+  process = () => {
+    tasks.shift();
+  };
+
+  report = () => {
+    this.setState({ progress: Math.abs(tasks.length - taskCount) });
+  };
+
   render() {
-    return <p>Bitcoin Miner: {this.state.mining ? "Mining" : "Idle"}</p>;
+    return (
+      <div className="container">
+        <p>Total tasks: {taskCount}</p>
+        <progress value={this.state.progress} max={taskCount} />
+        <button onClick={this.start} disabled={this.state.running}>
+          Start
+        </button>
+        <button onClick={this.stop} disabled={!this.state.running}>
+          Stop
+        </button>
+        <p>{`Idle time mean: ${this.state.mean}`}</p>
+      </div>
+    );
   }
 }
 
-export default Miner;
+export default Processing;

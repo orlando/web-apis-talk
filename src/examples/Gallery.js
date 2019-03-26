@@ -45,8 +45,12 @@ class Image extends Component {
       threshold: 0
     };
 
-    const observer = new IntersectionObserver(this.observeCallback, options);
-    observer.observe(this.img.current);
+    this.observer = new IntersectionObserver(this.observeCallback, options);
+    this.observer.observe(this.img.current);
+  }
+
+  componentWillUnmount() {
+    this.observer.disconnect();
   }
 
   observeCallback = entries => {
