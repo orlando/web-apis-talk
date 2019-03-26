@@ -4,6 +4,7 @@ import IntersectionObserver from "./pages/IntersectionObserver";
 import IntersectionObserver2 from "./pages/IntersectionObserver2";
 import RequestIdleCallback from "./pages/RequestIdleCallback";
 import PaymentRequest from "./pages/PaymentRequest";
+import WebBluetooth from "./pages/WebBluetooth";
 
 class App extends Component {
   render() {
@@ -31,6 +32,9 @@ class App extends Component {
               <li>
                 <Link to="/payment-request/">Payment Request API</Link>
               </li>
+              <li>
+                <Link to="/bluetooth/">Web Bluetooth API</Link>
+              </li>
             </ul>
           </nav>
 
@@ -44,6 +48,7 @@ class App extends Component {
           />
           <Route path="/request-idle/" component={RequestIdleCallback} />
           <Route path="/payment-request/" component={PaymentRequest} />
+          <Route path="/bluetooth/" component={WebBluetooth} />
         </div>
       </Router>
     );
