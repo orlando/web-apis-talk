@@ -62,6 +62,20 @@ class Shop extends Component {
             amount: {currency: 'USD', value: '1.00'}
           }
         ],
+        // optional
+        shippingOptions: [
+          {
+            id: "standard",
+            label: "🚛 Ground Shipping (2 days)",
+            amount: { currency: "USD", value: "5.00" },
+            selected: true,
+          },
+          {
+            id: "drone",
+            label: "🚀 Drone Express (2 hours)",
+            amount: { currency: "USD", value: "25.00" }
+          },
+        ],
         total: {
           label: 'Total',
           amount: {currency: 'USD', value: '1.00'}
@@ -78,13 +92,37 @@ class Shop extends Component {
       };
     });
 
+    const shippingOptions = [
+      {
+        id: "standard",
+        label: "🚛 Ground Shipping (2 days)",
+        amount: { currency: "USD", value: "5.00" },
+        selected: true
+      },
+      {
+        id: "drone",
+        label: "🚀 Drone Express (2 hours)",
+        amount: { currency: "USD", value: "25.00" }
+      }
+    ];
+
     return {
       id: "order-123",
       displayItems,
+      shippingOptions,
       total: {
         label: "Total",
         amount: { currency: "USD", value: total }
       }
+    };
+  }
+
+  buildPaymentOptions() {
+    return {
+      requestPayerEmail: false,
+      requestPayerName: false,
+      requestPayerPhone: false,
+      requestShipping: false
     };
   }
 
@@ -99,7 +137,8 @@ class Shop extends Component {
     // create payment request
     const request = new PaymentRequest(
       this.buildSupportedPaymentMethodData(),
-      this.buildShoppingCartDetails()
+      this.buildShoppingCartDetails(),
+      this.buildPaymentOptions()
     );
 
     // show request

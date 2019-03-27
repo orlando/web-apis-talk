@@ -14,7 +14,7 @@ class Processing extends Component {
   };
 
   componentWillUnmount() {
-    window.cancelIdleCallback(this.callbackId);
+    cancelIdleCallback(this.callbackId);
   }
 
   queueTask() {
@@ -28,7 +28,7 @@ class Processing extends Component {
   };
 
   stop = () => {
-    window.cancelIdleCallback(this.callbackId);
+    cancelIdleCallback(this.callbackId);
 
     const mean =
       idleTimes.reduce((previous, current) => (current += previous)) /
